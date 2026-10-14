@@ -1,13 +1,15 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
   output: "export",
   images: {
-    unoptimized: true, // Required for static HTML export
+    unoptimized: true,
   },
-  // If your repo is named BMSCEWebProject (not <username>.github.io), 
-  // you must set basePath so assets load from /BMSCEWebProject:
-  basePath: process.env.NODE_ENV === "production" ? "/BMSCEWebProject" : "",
+  // Use GITHUB_ACTIONS or repo subfolder fallback cleanly
+  basePath: process.env.BASE_PATH || (isProd ? "/BMSCEWebProject" : ""),
+  assetPrefix: process.env.BASE_PATH || (isProd ? "/BMSCEWebProject" : ""),
 };
 
 export default nextConfig;
