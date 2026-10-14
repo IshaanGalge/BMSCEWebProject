@@ -16,9 +16,7 @@ const nextConfig: NextConfig = {
       },
     },
   },
-  // Use GITHUB_ACTIONS or repo subfolder fallback cleanly
-  basePath: process.env.BASE_PATH || (isProd ? "/BMSCEWebProject" : ""),
-  assetPrefix: process.env.BASE_PATH || (isProd ? "/BMSCEWebProject" : ""),
+  basePath: isProd ? "/BMSCEWebProject" : "",
 };
 
 export default nextConfig;
