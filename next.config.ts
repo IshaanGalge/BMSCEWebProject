@@ -1,18 +1,13 @@
 import type { NextConfig } from "next";
-import path from "node:path";
 
 const nextConfig: NextConfig = {
-  cacheComponents: true,
-  partialPrefetching: true,
-  turbopack: {
-    root: path.resolve(__dirname),
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
+  output: "export",
+  images: {
+    unoptimized: true, // Required for static HTML export
   },
+  // If your repo is named BMSCEWebProject (not <username>.github.io), 
+  // you must set basePath so assets load from /BMSCEWebProject:
+  basePath: process.env.NODE_ENV === "production" ? "/BMSCEWebProject" : "",
 };
 
 export default nextConfig;
